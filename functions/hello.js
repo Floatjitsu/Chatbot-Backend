@@ -9,16 +9,20 @@ admin.initializeApp({
 const db = admin.database();
 const ref = db.ref('auftraege');
 
-exports.handler = async event => {
+const testCall = new Promise((resolve, reject) => {
 	ref.on('value', (snapshot) => {
-		console.log(snapshot.val());
+		resolve(snapshot.val());
 	}, (error) => {
-		console.log('The read failed: ' + error.code);
+		reject('The read failed: ' + error.code);
 	});
+});
+
+exports.handler = async event => {
+	let result = await testCall;
 	const subject = event.queryStringParameters.name || 'World';
-	console.log('Hello World!');
+	console.log(result);
 	return {
 		statusCode: 200,
-		body: `Hello ${subject}!`
+		body: 'Result: ' + result
 	}
 }
