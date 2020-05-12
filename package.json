@@ -7,10 +7,11 @@
   "netlify-lambda": "^1.6.3"
  },
  "scripts": {
-  "dev": "netlify-lambda serve functions",
-  "build": "netlify-lambda build functions"
+     "build:lambda": "netlify-lambda build --config ./config/webpack.functions.js functions",
+     "start:lambda": "netlify-lambda serve --config ./config/webpack.functions.js functions"
  },
  "dependencies": {
-  "firebase-admin": "^8.12.1"
+  "firebase-admin": "^8.12.1",
+  "webpack-node-externals": "^1.7.2"
  }
 }
