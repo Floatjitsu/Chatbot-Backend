@@ -1,8 +1,9 @@
 const database = require('../modules/database');
 
 exports.handler = async event => {
-	let result = await database.testCall;
-	const subject = event.queryStringParameters.name || 'World';
+	const subject = event.queryStringParameters.auftragsnummer || 'World';
+	console.log(subject);
+	let result = await database.getAnschlussadresse(subject);
 	console.log(result);
 	return {
 		statusCode: 200,
