@@ -11,14 +11,22 @@ if (!admin.apps.length) {
 const db = admin.database();
 const ref = db.ref('auftraege');
 
-const getAnschlussadresse = auftragsnummer => {
-    return new Promise((resolve, reject) => {
-        db.ref('auftraege/' + auftragsnummer).once('value').then(snapshot => {
-            resolve(snapshot.val().anschlussadresse);
-        }).catch(error => {
-            reject(error);
-        });
-    });
+const getAnschlussadresse = async auftragsnummer => {
+    try {
+        const result = await db.ref('auftraege/' + auftragsnummer).once('value');
+        return await result.val().anschlussadresse;
+    } catch (e) {
+        throw new Error(e);
+    }
 };
 
-module.exports = {getAnschlussadresse};
+const getAuftragsdaten = async auftragsnummer => {
+    try {
+        const result = await db.ref('auftraege/' + auftragsnummer).once('value');
+        return await result.val().auftragsdaten;
+    } catch (e) {
+        throw new Error(e);
+    }
+}
+
+module.exports = {getAnschlussadresse, getAuftragsdaten};
