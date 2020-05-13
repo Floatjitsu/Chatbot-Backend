@@ -16,7 +16,7 @@ const getAnschlussadresse = async auftragsnummer => {
         const result = await db.ref('auftraege/' + auftragsnummer).once('value');
         return {
             anschlussadresse: await result.val().anschlussadresse,
-            anschlussadresseGefunden: true
+            foundAuftragsnummer: true
         }
     } catch (e) {
         throw new Error(e);

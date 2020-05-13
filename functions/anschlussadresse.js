@@ -11,7 +11,7 @@ exports.handler = async event => {
 	} catch (e) {
 		return {
 			statusCode: 404,
-			body: JSON.stringify({anschlussadresseGefunden: false})
+			body: JSON.stringify({foundAuftragsnummer: false})
 		}
 	}
 };
