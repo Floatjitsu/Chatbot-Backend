@@ -33,6 +33,18 @@ const getAuftragsdaten = async auftragsnummer => {
     } catch (e) {
         throw new Error(e);
     }
-}
+};
 
-module.exports = {getAnschlussadresse, getAuftragsdaten};
+const auftragExists = async auftragsnummer => {
+    const result = await db.ref('auftraege/' + auftragsnummer).once('value');
+    if (!result.val()) {
+        return {
+            auftragExists: false
+        }
+    }
+    return {
+        auftragExists: true
+    }
+};
+
+module.exports = {getAnschlussadresse, getAuftragsdaten, auftragExists};
