@@ -23,6 +23,18 @@ const getAnschlussadresse = async auftragsnummer => {
     }
 };
 
+const getAuftragStatus = async auftragsnummer => {
+    try {
+        const result = await db.ref('auftraege/' + auftragsnummer).once('value');
+        return {
+            status: result.val().status,
+            foundAuftragsnummer: true
+        }
+    } catch (e) {
+        throw new Error(e);
+    }
+};
+
 const getAuftragsdaten = async auftragsnummer => {
     try {
         const result = await db.ref('auftraege/' + auftragsnummer).once('value');
@@ -47,4 +59,4 @@ const auftragExists = async auftragsnummer => {
     }
 };
 
-module.exports = {getAnschlussadresse, getAuftragsdaten, auftragExists};
+module.exports = {getAnschlussadresse, getAuftragStatus, getAuftragsdaten, auftragExists};
