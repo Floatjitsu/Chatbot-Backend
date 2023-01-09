@@ -11,7 +11,7 @@
      "dev": "netlify-lambda serve --config ./config/webpack.functions.js functions"
  },
  "dependencies": {
-  "firebase-admin": "^8.12.1",
+  "firebase-admin": "^11.4.1",
   "webpack-node-externals": "^1.7.2"
  }
 }
